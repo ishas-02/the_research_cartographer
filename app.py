@@ -19,7 +19,7 @@ st.set_page_config(page_title="Research Paper Navigator", layout="wide")
 
 
 # ===============================================================
-# 🔍 Extract top Methods / Datasets / Results (Cards)
+# Extract top Methods / Datasets / Results (Cards)
 # ===============================================================
 def extract_top_cards(knowledge_text: str):
     triples = re.findall(r"\[(.*?)\]\s*->\s*(.*?)\s*->\s*\[(.*?)\]", knowledge_text)
@@ -49,7 +49,7 @@ def extract_top_cards(knowledge_text: str):
 
 
 # ===============================================================
-# 🔧 Helper: run full pipeline for one paper
+# Helper: run full pipeline for one paper
 # ===============================================================
 def process_paper(uploaded_file):
     """Run parse → cartographer → cards for a single PDF."""
@@ -81,9 +81,9 @@ def process_paper(uploaded_file):
 
 
 # ===============================================================
-# 📌 UI HEADER
+#  UI HEADER
 # ===============================================================
-st.title("📚 Research Paper Navigator")
+st.title("📚 The Reasearch Cartographer")
 st.write(
     "Upload one or more research papers as PDF. "
     "You can inspect a single paper, or compare two papers side-by-side."
@@ -91,7 +91,7 @@ st.write(
 
 
 # ===============================================================
-# 📂 PDF UPLOAD (NOW MULTI-FILE)
+# PDF UPLOAD (NOW MULTI-FILE)
 # ===============================================================
 uploaded_files = st.file_uploader(
     "Upload Research Paper PDF(s)", type=["pdf"], accept_multiple_files=True
@@ -151,7 +151,7 @@ else:
             st.warning("⚠️ No valid graph relationships found.")
 
         # INTERACTIVE GRAPH
-        st.subheader("🌐 Interactive Knowledge Graph (Zoom & Drag)")
+        st.subheader("🌐 Interactive Knowledge Graph")
         from streamlit.components.v1 import html
 
         if paper["html_path"] and os.path.exists(paper["html_path"]):
@@ -178,7 +178,7 @@ else:
         paper_left = process_paper(uploaded_files[0])
         paper_right = process_paper(uploaded_files[1])
 
-        st.subheader("📊 Side-by-Side Comparison")
+        st.subheader("📊 Comparison")
 
         col_left, col_right = st.columns(2)
 

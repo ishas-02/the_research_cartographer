@@ -117,7 +117,7 @@ A quick, intuitive overview — like reading the paper’s genetic summary.
 Color-coded, structured, printable.
 
 <p align="center">
-  <img src="assets/static_graph_sample.png" width="70%">
+  <img src="assets/static_graph.png" width="70%">
 </p>
 
 ### 🌐 **Interactive Graph**
@@ -125,7 +125,7 @@ Color-coded, structured, printable.
 Drag, zoom, hover, explore.
 
 <p align="center">
-  <img src="assets/interactive_graph_sample.png" width="70%">
+  <img src="assets/interactive_graph.png" width="70%">
 </p>
 
 ### ❓ **Ask Anything About the Paper**
