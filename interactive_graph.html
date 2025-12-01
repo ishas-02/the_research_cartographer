@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 700px;
+                 background-color: #1e1e1e;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "font": {"color": "white"}, "id": "3D Object Detection", "label": "3D Object Detection", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Stereo Vision", "label": "Stereo Vision", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Semantic Information", "label": "Semantic Information", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Disparity and Geometric Constraints", "label": "Disparity and Geometric Constraints", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Disparity Based Clustering", "label": "Disparity Based Clustering", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Stereo Images", "label": "Stereo Images", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "3D Object Detection and Pose Estimation", "label": "3D Object Detection and Pose Estimation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Deep Convolutional Neural Network", "label": "Deep Convolutional Neural Network", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "KITTI 3D Object Detection Benchmark", "label": "KITTI 3D Object Detection Benchmark", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Experiments", "label": "Experiments", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Reliable Detection of Objects at 100m with 2MP Resolution", "label": "Reliable Detection of Objects at 100m with 2MP Resolution", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Algorithm", "label": "Algorithm", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Fifth of Best Image-Based Algorithms on KITTI", "label": "Fifth of Best Image-Based Algorithms on KITTI", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "LiDAR Data", "label": "LiDAR Data", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Accurate Depth Information", "label": "Accurate Depth Information", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Stereo Camera", "label": "Stereo Camera", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Disparity Images", "label": "Disparity Images", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "CNN", "label": "CNN", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Pixelwise Semantic Information", "label": "Pixelwise Semantic Information", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Class-Specific Shape Prior", "label": "Class-Specific Shape Prior", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Complete Reconstruction of Partially Occluded Objects", "label": "Complete Reconstruction of Partially Occluded Objects", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Confidence Score per Object", "label": "Confidence Score per Object", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Fusion with LiDAR or RADAR", "label": "Fusion with LiDAR or RADAR", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Du et al. [1]", "label": "Du et al. [1]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Flexible 3D Vehicle Detection Pipeline", "label": "Flexible 3D Vehicle Detection Pipeline", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Ku et al. [2]", "label": "Ku et al. [2]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "LiDAR Pointclouds and RGB Images", "label": "LiDAR Pointclouds and RGB Images", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Schlosser et al. [3]", "label": "Schlosser et al. [3]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "LiDAR with RGB Image (HHA Map)", "label": "LiDAR with RGB Image (HHA Map)", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Liang et al. [5]", "label": "Liang et al. [5]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Image Features into Bird\u0027s Eye View", "label": "Image Features into Bird\u0027s Eye View", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Shi et al. [6]", "label": "Shi et al. [6]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "3D Proposals from LiDAR Point Clouds", "label": "3D Proposals from LiDAR Point Clouds", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Li et al. [7]", "label": "Li et al. [7]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "3D Point Cloud Data into 2D Point Map", "label": "3D Point Cloud Data into 2D Point Map", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Engelcke et al. [8]", "label": "Engelcke et al. [8]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Object Detection in Point Clouds with CNNs", "label": "Object Detection in Point Clouds with CNNs", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Geometric Constraints from 2D Bounding Box", "label": "Geometric Constraints from 2D Bounding Box", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Estimating 3D Bounding Boxes", "label": "Estimating 3D Bounding Boxes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Deep-MANT A [10]", "label": "Deep-MANT A [10]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Vehicle Orientation, Size and Location of Key Points", "label": "Vehicle Orientation, Size and Location of Key Points", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Xiang et al. [11]", "label": "Xiang et al. [11]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "3D Voxel Patterns", "label": "3D Voxel Patterns", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Chen et al. [12]", "label": "Chen et al. [12]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Energy Minimization Approach for Candidate Bounding Boxes", "label": "Energy Minimization Approach for Candidate Bounding Boxes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Two-Stream CNN", "label": "Two-Stream CNN", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "RGB Channel and Disparity Map/HHA Image", "label": "RGB Channel and Disparity Map/HHA Image", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Stereo R-CNN [15]", "label": "Stereo R-CNN [15]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Objects Simultaneously in Left and Right Image", "label": "Objects Simultaneously in Left and Right Image", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "\"Pseudo-LiDAR\" approach [16]", "label": "\"Pseudo-LiDAR\" approach [16]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Image-Based Depth Maps to LiDAR Representation", "label": "Image-Based Depth Maps to LiDAR Representation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Stereo Image Pair", "label": "Stereo Image Pair", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "System", "label": "System", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Block Matching Algorithm", "label": "Block Matching Algorithm", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Disparities between Left and Right Image", "label": "Disparities between Left and Right Image", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Connected Component Labeling", "label": "Connected Component Labeling", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Clustering of Disparities", "label": "Clustering of Disparities", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "World Coordinates", "label": "World Coordinates", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Cluster Points", "label": "Cluster Points", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Grid Map", "label": "Grid Map", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Position in World Coordinates", "label": "Position in World Coordinates", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "[resx, resz", "label": "[resx, resz", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Class Specific Shape Priors", "label": "Class Specific Shape Priors", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Optimizing Object Orientation and Dimensions", "label": "Optimizing Object Orientation and Dimensions", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "ResNet-38", "label": "ResNet-38", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Encoder Backbone", "label": "Encoder Backbone", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "SSD [18] and RetinaNet [19]", "label": "SSD [18] and RetinaNet [19]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Ideas for Proposal-Free Bounding Box Detection", "label": "Ideas for Proposal-Free Bounding Box Detection", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Block Matching Algorithm [21]", "label": "Block Matching Algorithm [21]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Disparity Estimation", "label": "Disparity Estimation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Peak-Ratio, Left-Right-Consistency", "label": "Peak-Ratio, Left-Right-Consistency", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Metrics for Confidence Metric", "label": "Metrics for Confidence Metric", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "DFS-Based Approach", "label": "DFS-Based Approach", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Computing Connected Components", "label": "Computing Connected Components", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Morphological Opening", "label": "Morphological Opening", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Filtering Outliers in Grid Map", "label": "Filtering Outliers in Grid Map", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Convex Hull", "label": "Convex Hull", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Optimizing Orientation and Dimension of the Object", "label": "Optimizing Orientation and Dimension of the Object", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Confidence Score", "label": "Confidence Score", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Confidence Values per Pixel and Size of Object Cluster", "label": "Confidence Values per Pixel and Size of Object Cluster", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "KITTI Object Detection Benchmark [22]", "label": "KITTI Object Detection Benchmark [22]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "7481 Training Images", "label": "7481 Training Images", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "7518 Testing Images", "label": "7518 Testing Images", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Cityscapes Dataset [23]", "label": "Cityscapes Dataset [23]", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "5000 Training Images with Fine Annotations", "label": "5000 Training Images with Fine Annotations", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "20000 Training Images with Coarse Annotations", "label": "20000 Training Images with Coarse Annotations", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Object Detection and Semantic Segmentation", "label": "Object Detection and Semantic Segmentation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Cityscapes dataset [23", "label": "Cityscapes dataset [23", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "2D Bounding Boxes", "label": "2D Bounding Boxes", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Optional Input for Clustering", "label": "Optional Input for Clustering", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "NVIDIA TIT AN X GPU", "label": "NVIDIA TIT AN X GPU", "shape": "dot", "size": 10}, {"color": "#97c2fc", "font": {"color": "white"}, "id": "Processing", "label": "Processing", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "3D Object Detection", "label": "METHOD", "to": "Stereo Vision", "width": 1}, {"arrows": "to", "from": "3D Object Detection", "label": "METHOD", "to": "Semantic Information", "width": 1}, {"arrows": "to", "from": "Semantic Information", "label": "USED_WITH", "to": "Disparity and Geometric Constraints", "width": 1}, {"arrows": "to", "from": "Semantic Information", "label": "IMPROVES", "to": "Disparity Based Clustering", "width": 1}, {"arrows": "to", "from": "Stereo Images", "label": "USED_FOR", "to": "3D Object Detection and Pose Estimation", "width": 1}, {"arrows": "to", "from": "Deep Convolutional Neural Network", "label": "PROVIDES", "to": "Semantic Information", "width": 1}, {"arrows": "to", "from": "KITTI 3D Object Detection Benchmark", "label": "USED_FOR", "to": "Experiments", "width": 1}, {"arrows": "to", "from": "Experiments", "label": "DEMONSTRATE", "to": "Reliable Detection of Objects at 100m with 2MP Resolution", "width": 1}, {"arrows": "to", "from": "Algorithm", "label": "RUNTIME", "to": "Fifth of Best Image-Based Algorithms on KITTI", "width": 1}, {"arrows": "to", "from": "LiDAR Data", "label": "PROVIDES", "to": "Accurate Depth Information", "width": 1}, {"arrows": "to", "from": "Stereo Camera", "label": "PROVIDES", "to": "Disparity Images", "width": 1}, {"arrows": "to", "from": "CNN", "label": "OBTAINS", "to": "Semantic Information", "width": 1}, {"arrows": "to", "from": "CNN", "label": "OBTAINS", "to": "Pixelwise Semantic Information", "width": 1}, {"arrows": "to", "from": "Class-Specific Shape Prior", "label": "ALLOWS", "to": "Complete Reconstruction of Partially Occluded Objects", "width": 1}, {"arrows": "to", "from": "Confidence Score per Object", "label": "FACILITATES", "to": "Fusion with LiDAR or RADAR", "width": 1}, {"arrows": "to", "from": "Du et al. [1]", "label": "PROPOSE", "to": "Flexible 3D Vehicle Detection Pipeline", "width": 1}, {"arrows": "to", "from": "Ku et al. [2]", "label": "USE", "to": "LiDAR Pointclouds and RGB Images", "width": 1}, {"arrows": "to", "from": "Schlosser et al. [3]", "label": "FUSE", "to": "LiDAR with RGB Image (HHA Map)", "width": 1}, {"arrows": "to", "from": "Liang et al. [5]", "label": "PROJECT", "to": "Image Features into Bird\u0027s Eye View", "width": 1}, {"arrows": "to", "from": "Shi et al. [6]", "label": "GENERATE", "to": "3D Proposals from LiDAR Point Clouds", "width": 1}, {"arrows": "to", "from": "Li et al. [7]", "label": "PROJECT", "to": "3D Point Cloud Data into 2D Point Map", "width": 1}, {"arrows": "to", "from": "Engelcke et al. [8]", "label": "PERFORM", "to": "Object Detection in Point Clouds with CNNs", "width": 1}, {"arrows": "to", "from": "Geometric Constraints from 2D Bounding Box", "label": "USED_FOR", "to": "Estimating 3D Bounding Boxes", "width": 1}, {"arrows": "to", "from": "Deep-MANT A [10]", "label": "ESTIMATES", "to": "Vehicle Orientation, Size and Location of Key Points", "width": 1}, {"arrows": "to", "from": "Xiang et al. [11]", "label": "DETECT", "to": "3D Voxel Patterns", "width": 1}, {"arrows": "to", "from": "Chen et al. [12]", "label": "PROPOSE", "to": "Energy Minimization Approach for Candidate Bounding Boxes", "width": 1}, {"arrows": "to", "from": "Two-Stream CNN", "label": "INPUT", "to": "RGB Channel and Disparity Map/HHA Image", "width": 1}, {"arrows": "to", "from": "Stereo R-CNN [15]", "label": "DETECTS", "to": "Objects Simultaneously in Left and Right Image", "width": 1}, {"arrows": "to", "from": "\"Pseudo-LiDAR\" approach [16]", "label": "CONVERTS", "to": "Image-Based Depth Maps to LiDAR Representation", "width": 1}, {"arrows": "to", "from": "Stereo Image Pair", "label": "INPUT_TO", "to": "System", "width": 1}, {"arrows": "to", "from": "Block Matching Algorithm", "label": "CALCULATES", "to": "Disparities between Left and Right Image", "width": 1}, {"arrows": "to", "from": "Connected Component Labeling", "label": "PERFORMS", "to": "Clustering of Disparities", "width": 1}, {"arrows": "to", "from": "World Coordinates", "label": "COMPUTED_FOR", "to": "Cluster Points", "width": 1}, {"arrows": "to", "from": "Grid Map", "label": "REPRESENTS", "to": "Position in World Coordinates", "width": 1}, {"arrows": "to", "from": "Grid Map", "label": "RESOLUTION", "to": "[resx, resz", "width": 1}, {"arrows": "to", "from": "Class Specific Shape Priors", "label": "USED_FOR", "to": "Optimizing Object Orientation and Dimensions", "width": 1}, {"arrows": "to", "from": "ResNet-38", "label": "USED_AS", "to": "Encoder Backbone", "width": 1}, {"arrows": "to", "from": "SSD [18] and RetinaNet [19]", "label": "PROVIDE", "to": "Ideas for Proposal-Free Bounding Box Detection", "width": 1}, {"arrows": "to", "from": "Block Matching Algorithm [21]", "label": "USED_FOR", "to": "Disparity Estimation", "width": 1}, {"arrows": "to", "from": "Peak-Ratio, Left-Right-Consistency", "label": "USED_AS", "to": "Metrics for Confidence Metric", "width": 1}, {"arrows": "to", "from": "DFS-Based Approach", "label": "USED_FOR", "to": "Computing Connected Components", "width": 1}, {"arrows": "to", "from": "Morphological Opening", "label": "USED_FOR", "to": "Filtering Outliers in Grid Map", "width": 1}, {"arrows": "to", "from": "Convex Hull", "label": "USED_FOR", "to": "Optimizing Orientation and Dimension of the Object", "width": 1}, {"arrows": "to", "from": "Confidence Score", "label": "CALCULATED_FROM", "to": "Confidence Values per Pixel and Size of Object Cluster", "width": 1}, {"arrows": "to", "from": "KITTI Object Detection Benchmark [22]", "label": "DATASET", "to": "7481 Training Images", "width": 1}, {"arrows": "to", "from": "KITTI Object Detection Benchmark [22]", "label": "DATASET", "to": "7518 Testing Images", "width": 1}, {"arrows": "to", "from": "Cityscapes Dataset [23]", "label": "DATASET", "to": "5000 Training Images with Fine Annotations", "width": 1}, {"arrows": "to", "from": "Cityscapes Dataset [23]", "label": "DATASET", "to": "20000 Training Images with Coarse Annotations", "width": 1}, {"arrows": "to", "from": "Object Detection and Semantic Segmentation", "label": "TRAINED_ON", "to": "Cityscapes dataset [23", "width": 1}, {"arrows": "to", "from": "2D Bounding Boxes", "label": "SERVE_AS", "to": "Optional Input for Clustering", "width": 1}, {"arrows": "to", "from": "NVIDIA TIT AN X GPU", "label": "USED_FOR", "to": "Processing", "width": 1}, {"arrows": "to", "from": "3D Object Detection", "label": "METHOD", "title": "METHOD", "to": "Stereo Vision"}, {"arrows": "to", "from": "3D Object Detection", "label": "METHOD", "title": "METHOD", "to": "Semantic Information"}, {"arrows": "to", "from": "Semantic Information", "label": "USED_WITH", "title": "USED_WITH", "to": "Disparity and Geometric Constraints"}, {"arrows": "to", "from": "Semantic Information", "label": "IMPROVES", "title": "IMPROVES", "to": "Disparity Based Clustering"}, {"arrows": "to", "from": "Stereo Images", "label": "USED_FOR", "title": "USED_FOR", "to": "3D Object Detection and Pose Estimation"}, {"arrows": "to", "from": "Deep Convolutional Neural Network", "label": "PROVIDES", "title": "PROVIDES", "to": "Semantic Information"}, {"arrows": "to", "from": "KITTI 3D Object Detection Benchmark", "label": "USED_FOR", "title": "USED_FOR", "to": "Experiments"}, {"arrows": "to", "from": "Experiments", "label": "DEMONSTRATE", "title": "DEMONSTRATE", "to": "Reliable Detection of Objects at 100m with 2MP Resolution"}, {"arrows": "to", "from": "Algorithm", "label": "RUNTIME", "title": "RUNTIME", "to": "Fifth of Best Image-Based Algorithms on KITTI"}, {"arrows": "to", "from": "LiDAR Data", "label": "PROVIDES", "title": "PROVIDES", "to": "Accurate Depth Information"}, {"arrows": "to", "from": "Stereo Camera", "label": "PROVIDES", "title": "PROVIDES", "to": "Disparity Images"}, {"arrows": "to", "from": "CNN", "label": "OBTAINS", "title": "OBTAINS", "to": "Semantic Information"}, {"arrows": "to", "from": "CNN", "label": "OBTAINS", "title": "OBTAINS", "to": "Pixelwise Semantic Information"}, {"arrows": "to", "from": "Class-Specific Shape Prior", "label": "ALLOWS", "title": "ALLOWS", "to": "Complete Reconstruction of Partially Occluded Objects"}, {"arrows": "to", "from": "Confidence Score per Object", "label": "FACILITATES", "title": "FACILITATES", "to": "Fusion with LiDAR or RADAR"}, {"arrows": "to", "from": "Du et al. [1]", "label": "PROPOSE", "title": "PROPOSE", "to": "Flexible 3D Vehicle Detection Pipeline"}, {"arrows": "to", "from": "Ku et al. [2]", "label": "USE", "title": "USE", "to": "LiDAR Pointclouds and RGB Images"}, {"arrows": "to", "from": "Schlosser et al. [3]", "label": "FUSE", "title": "FUSE", "to": "LiDAR with RGB Image (HHA Map)"}, {"arrows": "to", "from": "Liang et al. [5]", "label": "PROJECT", "title": "PROJECT", "to": "Image Features into Bird\u0027s Eye View"}, {"arrows": "to", "from": "Shi et al. [6]", "label": "GENERATE", "title": "GENERATE", "to": "3D Proposals from LiDAR Point Clouds"}, {"arrows": "to", "from": "Li et al. [7]", "label": "PROJECT", "title": "PROJECT", "to": "3D Point Cloud Data into 2D Point Map"}, {"arrows": "to", "from": "Engelcke et al. [8]", "label": "PERFORM", "title": "PERFORM", "to": "Object Detection in Point Clouds with CNNs"}, {"arrows": "to", "from": "Geometric Constraints from 2D Bounding Box", "label": "USED_FOR", "title": "USED_FOR", "to": "Estimating 3D Bounding Boxes"}, {"arrows": "to", "from": "Deep-MANT A [10]", "label": "ESTIMATES", "title": "ESTIMATES", "to": "Vehicle Orientation, Size and Location of Key Points"}, {"arrows": "to", "from": "Xiang et al. [11]", "label": "DETECT", "title": "DETECT", "to": "3D Voxel Patterns"}, {"arrows": "to", "from": "Chen et al. [12]", "label": "PROPOSE", "title": "PROPOSE", "to": "Energy Minimization Approach for Candidate Bounding Boxes"}, {"arrows": "to", "from": "Two-Stream CNN", "label": "INPUT", "title": "INPUT", "to": "RGB Channel and Disparity Map/HHA Image"}, {"arrows": "to", "from": "Stereo R-CNN [15]", "label": "DETECTS", "title": "DETECTS", "to": "Objects Simultaneously in Left and Right Image"}, {"arrows": "to", "from": "\"Pseudo-LiDAR\" approach [16]", "label": "CONVERTS", "title": "CONVERTS", "to": "Image-Based Depth Maps to LiDAR Representation"}, {"arrows": "to", "from": "Stereo Image Pair", "label": "INPUT_TO", "title": "INPUT_TO", "to": "System"}, {"arrows": "to", "from": "Block Matching Algorithm", "label": "CALCULATES", "title": "CALCULATES", "to": "Disparities between Left and Right Image"}, {"arrows": "to", "from": "Connected Component Labeling", "label": "PERFORMS", "title": "PERFORMS", "to": "Clustering of Disparities"}, {"arrows": "to", "from": "World Coordinates", "label": "COMPUTED_FOR", "title": "COMPUTED_FOR", "to": "Cluster Points"}, {"arrows": "to", "from": "Grid Map", "label": "REPRESENTS", "title": "REPRESENTS", "to": "Position in World Coordinates"}, {"arrows": "to", "from": "Grid Map", "label": "RESOLUTION", "title": "RESOLUTION", "to": "[resx, resz"}, {"arrows": "to", "from": "Class Specific Shape Priors", "label": "USED_FOR", "title": "USED_FOR", "to": "Optimizing Object Orientation and Dimensions"}, {"arrows": "to", "from": "ResNet-38", "label": "USED_AS", "title": "USED_AS", "to": "Encoder Backbone"}, {"arrows": "to", "from": "SSD [18] and RetinaNet [19]", "label": "PROVIDE", "title": "PROVIDE", "to": "Ideas for Proposal-Free Bounding Box Detection"}, {"arrows": "to", "from": "Block Matching Algorithm [21]", "label": "USED_FOR", "title": "USED_FOR", "to": "Disparity Estimation"}, {"arrows": "to", "from": "Peak-Ratio, Left-Right-Consistency", "label": "USED_AS", "title": "USED_AS", "to": "Metrics for Confidence Metric"}, {"arrows": "to", "from": "DFS-Based Approach", "label": "USED_FOR", "title": "USED_FOR", "to": "Computing Connected Components"}, {"arrows": "to", "from": "Morphological Opening", "label": "USED_FOR", "title": "USED_FOR", "to": "Filtering Outliers in Grid Map"}, {"arrows": "to", "from": "Convex Hull", "label": "USED_FOR", "title": "USED_FOR", "to": "Optimizing Orientation and Dimension of the Object"}, {"arrows": "to", "from": "Confidence Score", "label": "CALCULATED_FROM", "title": "CALCULATED_FROM", "to": "Confidence Values per Pixel and Size of Object Cluster"}, {"arrows": "to", "from": "KITTI Object Detection Benchmark [22]", "label": "DATASET", "title": "DATASET", "to": "7481 Training Images"}, {"arrows": "to", "from": "KITTI Object Detection Benchmark [22]", "label": "DATASET", "title": "DATASET", "to": "7518 Testing Images"}, {"arrows": "to", "from": "Cityscapes Dataset [23]", "label": "DATASET", "title": "DATASET", "to": "5000 Training Images with Fine Annotations"}, {"arrows": "to", "from": "Cityscapes Dataset [23]", "label": "DATASET", "title": "DATASET", "to": "20000 Training Images with Coarse Annotations"}, {"arrows": "to", "from": "Object Detection and Semantic Segmentation", "label": "TRAINED_ON", "title": "TRAINED_ON", "to": "Cityscapes dataset [23"}, {"arrows": "to", "from": "2D Bounding Boxes", "label": "SERVE_AS", "title": "SERVE_AS", "to": "Optional Input for Clustering"}, {"arrows": "to", "from": "NVIDIA TIT AN X GPU", "label": "USED_FOR", "title": "USED_FOR", "to": "Processing"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "repulsion": {
+            "centralGravity": 0.2,
+            "damping": 0.9,
+            "nodeDistance": 180,
+            "springConstant": 0.05,
+            "springLength": 180
+        },
+        "solver": "repulsion",
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>

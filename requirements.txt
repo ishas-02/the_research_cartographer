@@ -1,0 +1,9 @@
+google-generativeai
+pypdf
+langchain
+matplotlib
+networkx
+python-dotenv
+streamlit
+pyvis
+

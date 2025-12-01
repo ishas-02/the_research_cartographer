@@ -1,0 +1,14 @@
+name: my_cartographer
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+      - google-generativeai
+      - pypdf
+      - langchain
+      - networkx
+      - matplotlib
+      - python-dotenv
