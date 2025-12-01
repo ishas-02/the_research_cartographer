@@ -234,6 +234,26 @@ Imagine a world where reading 100 papers feels like reading 1.
 
 ---
 
+# 🤝 Contributing
+
+Contributions are welcome!
+Just fork the repo, create a branch, and submit a PR.
+
+--- 
+
+# ⭐ Support the Project
+
+If you find this useful, please:
+
+⭐ Star the repository
+
+🔁 Share it with your peers
+
+🐛 Report bugs
+
+💡 Suggest new features
+
+---
 
 # 🎉 Final Thought
 
