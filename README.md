@@ -1,219 +1,280 @@
-🌌 The Research Cartographer
-Mapping the Hidden Architecture of Scientific Papers
-<p align="center"> <img src="assets/banner.png" width="75%"> </p>
-🚀 Overview
+Absolutely — here is a **perfectly formatted, GitHub-ready `README.md`** that you can **copy–paste exactly as is**.
+It includes **Markdown headings, centered banner placeholder, tables, code blocks, spacing, and section formatting**.
 
-The Research Cartographer is an AI-powered multi-agent system that transforms dense academic PDFs into structured knowledge maps, insight cards, comparisons, and interactive visual graphs.
+👉 **You can paste this directly into GitHub — it will render beautifully.**
 
-It reads research papers like an expert would — extracting key entities, mapping relationships, and answering questions — turning the literature review process into an interactive exploration.
+---
 
-This tool is ideal for:
+# 🌌 **The Research Cartographer**
 
-Researchers
+### *Mapping the Hidden Architecture of Scientific Papers*
 
-Students
+<p align="center">
+  <img src="assets/banner.png" width="75%">
+</p>
 
-Machine learning engineers
+---
 
-Anyone doing literature reviews or comparative studies
+## 🚀 Overview
 
-✨ Features
-🔍 1. PDF Understanding
+**The Research Cartographer** is an AI-powered multi-agent system that transforms dense academic PDFs into **structured knowledge maps**, **insight cards**, **comparisons**, and **interactive visual graphs**.
 
-Extracts clean text from academic papers using a robust parsing pipeline.
+Instead of manually deciphering methods, datasets, and results, this tool acts as a **research co-pilot** that:
 
-🧠 2. Agent-Based Triple Extraction
+* Extracts key concepts and relationships
+* Builds semantic knowledge graphs
+* Highlights top methods, datasets, and results
+* Enables side-by-side comparison of multiple papers
+* Answers questions using a Q&A agent
 
-Uses an LLM to produce structured relationships:
+It makes literature review **visual, interactive, and insightful**.
 
+---
+
+## ✨ Features
+
+### 🔍 **1. PDF Understanding**
+
+Extracts structured text from research papers using PDF parsing tools.
+
+### 🧠 **2. Triple-Based Knowledge Extraction**
+
+Uses an LLM-powered agent to output structured relationships like:
+
+```
 [Method] -> USES -> [Dataset]
 [Model] -> ACHIEVES -> [Result]
+```
 
-📊 3. Insight Cards
+### ⭐ **3. Insight Cards**
 
-Automatically identifies:
+Automatically identifies and displays:
 
-⭐ Top Methods
+* Top Methods
+* Top Datasets
+* Top Results
 
-📂 Top Datasets
+### 🎨 **4. Static Knowledge Graph**
 
-🏆 Top Results
+Uses NetworkX + Matplotlib to build a color-coded graph:
 
-🎨 4. Static Knowledge Graph (NetworkX)
+* 🔵 Methods
+* 🟢 Datasets
+* 🟡 Results
+* ⚪ Other concepts
 
-Color-coded graph showing the structure of the research:
+### 🌐 **5. Interactive Graph**
 
-Blue → Methods
+A PyVis-based graph where users can:
 
-Green → Datasets
+* Drag nodes
+* Zoom & pan
+* Hover edges to see relationships
 
-Yellow → Results
+### ❓ **6. Research Q&A**
 
-Grey → Other concepts
+Ask the agent:
 
-🌐 5. Interactive Graph (PyVis)
+* “What is the main contribution?”
+* “What datasets were used?”
+* “What differentiates this from another paper?”
 
-A draggable, zoomable, hover-enabled visualization for exploring the paper as a semantic network.
+### ⚔️ **7. Side-by-Side Paper Comparison**
 
-⁉️ 6. Research Q&A Agent
+Upload two PDFs → the system automatically:
 
-Ask questions like:
+* Extracts graphs
+* Summarizes insights
+* Compares methods, datasets, and results
+* Shows differences
 
-“What is the main contribution?”
+---
 
-“How does this paper differ from Paper B?”
+## 🧭 System Architecture
 
-“What datasets were used?”
-
-The Navigator agent answers using the extracted knowledge graph.
-
-⚔️ 7. Side-by-Side Paper Comparison
-
-Supports two-paper mode:
-
-Extracts both graphs
-
-Summarizes both papers
-
-Highlights differences in methods, datasets, and results
-
-Provides comparative insights
-
-🧭 System Architecture
+```
 📄 PDF → 🧹 Text Extractor
        → 🧠 Cartographer Agent (Triples)
        → 🎯 Insight Classifier
        → 🎨 Static Graph Builder
        → 🌐 Interactive Graph Builder
-       → ❓ Navigator Agent (Q&A)
-       → ⚔️ Paper Comparison Engine
+       → ❓ Navigator Q&A Agent
+       → ⚔️ Comparison Engine (multi-paper mode)
+```
 
-📂 Project Structure
+---
+
+## 📂 Project Structure
+
+```
 The-Research-Cartographer/
 │
-├── app.py                      # Streamlit dashboard
-├── main.py                     # CLI runner
-├── environment.yml             # Conda environment setup
-├── README.md                   # Documentation
+├── app.py                      # Streamlit UI Dashboard
+├── main.py                     # CLI Runner (optional)
+├── environment.yml             # Conda Environment
+├── README.md                   # Project Documentation
 │
 ├── agents/
-│   ├── cartographer.py         # Triple extractor agent
-│   └── navigator.py            # Q&A agent
+│   ├── cartographer.py         # Knowledge Triple Extractor
+│   └── navigator.py            # Question-Answering Agent
 │
 ├── tools/
-│   ├── pdf_parser.py           # PDF -> text
-│   ├── graph_visualizer.py     # Static graph
-│   └── graph_interactive.py    # Interactive PyVis graph
+│   ├── pdf_parser.py           # PDF Text Extractor
+│   ├── graph_visualizer.py     # Static Graph (NetworkX)
+│   └── graph_interactive.py    # Interactive Graph (PyVis)
 │
-├── assets/                     # Images, banner, screenshots
+├── assets/
+│   ├── banner.png              # Repo Banner
+│   ├── static_graph_sample.png # Example Output
+│   └── interactive_graph_sample.png
 │
-└── sample_papers/              # Example PDFs (optional)
+└── sample_papers/              # Optional sample PDFs
+```
 
-⚙️ Installation
-1️⃣ Clone the repository
+---
+
+## ⚙️ Installation
+
+### **1️⃣ Clone the repository**
+
+```bash
 git clone https://github.com/your-username/research-cartographer.git
 cd research-cartographer
+```
 
-2️⃣ Create the Conda environment
+### **2️⃣ Create the Conda environment**
+
+```bash
 conda env create -f environment.yml
 conda activate my_cartographer
+```
 
-3️⃣ Set up your Google API key (DO NOT HARD-CODE IT)
+### **3️⃣ Add your Gemini API key securely**
 
-Create a local environment variable:
+**DO NOT hard-code your key in the code.**
 
-export GOOGLE_API_KEY="your_api_key_here"
+Use environment variables:
 
+Mac/Linux:
 
-Or in Windows PowerShell:
+```bash
+export GOOGLE_API_KEY="your_key_here"
+```
 
-setx GOOGLE_API_KEY "your_api_key_here"
+Windows PowerShell:
 
-▶️ Running the Streamlit App
+```powershell
+setx GOOGLE_API_KEY "your_key_here"
+```
+
+---
+
+## ▶️ Running the Streamlit App
+
+```bash
 streamlit run app.py
+```
 
+This opens the dashboard at:
 
-App will open at:
+👉 **[http://localhost:8501](http://localhost:8501)**
 
-http://localhost:8501
+Upload a PDF → see knowledge graphs → ask questions → compare papers.
 
+---
 
-Upload a research paper → view graphs → explore → compare → ask questions.
+## 🧪 Example Output
 
-🧪 Example Output
-🔹 Insight Cards
+### ⭐ **Insight Cards**
+
+```
 Top Methods:
 - Stereo Vision Depth Estimation
-- CNN Behavior Classifier
-- LSTM Risk Score Module
+- CNN-Based Driver Behavior Recognition
+- LSTM Risk Scoring
+```
 
-🔹 Knowledge Triples
-[Stereo camera] -> ESTIMATES -> [object depth]
-[CNN classifier] -> CLASSIFIES -> [driver behavior]
+### 🧠 **Knowledge Triples**
 
-🎨 Static Graph
+```
+[Stereo Camera] -> ESTIMATES -> [Object Depth]
+[CNN Classifier] -> CLASSIFIES -> [Driver Behavior]
+```
 
-(Add a screenshot to assets/static_graph_sample.png)
+### 🎨 **Static Graph Example**
 
-🌐 Interactive Graph
+<p align="center">
+  <img src="assets/static_graph_sample.png" width="70%">
+</p>
 
-(Add a screenshot to assets/interactive_graph_sample.png)
+### 🌐 **Interactive Graph Example**
 
-⚔️ Paper Comparison
+<p align="center">
+  <img src="assets/interactive_graph_sample.png" width="70%">
+</p>
 
-Upload two PDFs to automatically generate:
+---
 
-Two knowledge graphs
+## ⚔️ Side-by-Side Comparison
 
-Two sets of insight cards
+The system automatically generates:
 
-Automatic difference analysis
+* Two knowledge maps
+* Two sets of insight cards
+* Overlap & difference analysis
+* Comparative Q&A
 
-Comparative Q&A
+Perfect for literature reviews and benchmarking.
 
-This mode is extremely helpful for literature reviews.
+---
 
-🛠️ Tech Stack
-Component	Technology
-LLM Engine	Gemini 2.0 Flash
-PDF Parsing	PyPDF
-Static Graphs	NetworkX + Matplotlib
-Interactive Graphs	PyVis
-Web UI	Streamlit
-Language	Python 3
-🚧 Limitations
+## 🛠️ Tech Stack
 
-Multi-column PDFs may extract text imperfectly
+| Component          | Technology            |
+| ------------------ | --------------------- |
+| LLM Engine         | Gemini 2.0 Flash      |
+| PDF Parsing        | PyPDF                 |
+| Static Graphs      | NetworkX + Matplotlib |
+| Interactive Graphs | PyVis                 |
+| Interface          | Streamlit             |
+| Language           | Python 3              |
 
-Triple extraction depends on LLM consistency
+---
 
-Node classification uses heuristic keyword matching
+## 🚧 Limitations
 
-Long PDFs are truncated for efficiency
+* Multi-column PDFs may not extract perfectly
+* Triple extraction depends on LLM consistency
+* Keyword-based classification may mislabel some nodes
+* Very long PDFs are truncated for speed
 
-🌱 Future Enhancements
+---
 
-Full long-document chunking workflow
+## 🌱 Future Improvements
 
-Automatic literature review generation
+* Chunked long-document processing
+* Extracting tables, equations, and figures
+* Automatic literature review generation
+* Semantic clustering of research papers
+* Citation graph extraction
 
-Extraction of figures, tables, equations
+---
 
-Multi-paper clustering and similarity analysis
+## 🤝 Contributing
 
-Citation graph extraction
+Contributions are welcome!
+Just fork the repo, create a branch, and submit a PR.
 
-🤝 Contributing
+---
 
-Pull requests are welcome!
-For major changes, please open an issue first to discuss what you'd like to improve.
+## ⭐ Support the Project
 
-⭐ Support the Project
+If you find this useful, please:
 
-If you found this useful:
+* ⭐ Star the repository
+* 🔁 Share it with your peers
+* 🐛 Report bugs
+* 💡 Suggest new features
 
-⭐ Star the repo
+---
 
-🔁 Share with other researchers
-
-💬 Suggest improvements
