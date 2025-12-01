@@ -3,8 +3,9 @@
 ### *Exploring, Mapping, and Understanding Scientific Worlds with AI*
 
 <p align="center">
-  <img src="assets/banner.png" width="75%">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=900&color=00C2FF&center=true&vCenter=true&width=900&lines=🔭+The+Research+Cartographer+🔬;Mapping+the+Hidden+Architecture+of+Scientific+Papers;Turning+PDFs+into+Living+Knowledge+Maps" alt="Typing SVG" />
 </p>
+
 
 ---
 
