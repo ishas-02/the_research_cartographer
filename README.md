@@ -90,6 +90,10 @@ Think of it as:
 
 > **“Turning a paper’s text into a living, navigable universe.”**
 
+<p align="center">
+  <img src="assets/Architecture.png" width="70%">
+</p>
+
 ---
 
 # 🎨 **4. What the Cartographer Creates**
