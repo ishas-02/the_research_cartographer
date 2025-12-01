@@ -2,20 +2,7 @@
 
 ### *Exploring, Mapping, and Understanding Scientific Worlds with AI*
 
-<div align="center">
-██████╗ ███████╗██████╗ █████╗ ███████╗ ██████╗██╗ ██╗
-██╔══██╗██╔════╝██╔══██╗██╔══██╗██╔════╝██╔════╝██║ ██╔╝
-██████╔╝█████╗ ██████╔╝███████║█████╗ ██║ █████╔╝
-██╔═══╝ ██╔══╝ ██╔══██╗██╔══██║██╔══╝ ██║ ██╔═██╗
-██║ ███████╗██║ ██║██║ ██║███████╗╚██████╗██║ ██╗
-╚═╝ ╚══════╝╚═╝ ╚═╝╚═╝ ╚═╝╚══════╝ ╚═════╝╚═╝ ╚═╝
-
-            ✨  THE RESEARCH CARTOGRAPHER  ✨
-   Mapping the Hidden Architecture of Scientific Papers
-
-
-</div>
-
+<p align="center"> <img src="assets/banner.png" width="75%"> </p>
 
 
 ---
